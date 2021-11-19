@@ -1,88 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-
-    <ImageView
-        android:id="@+id/idQrCode"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="@string/imageDescription_qrcode" />
-
-    <RadioGroup
-        android:id="@+id/idRadioTransport"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/idQrCode"
-        app:layout_constraintTop_toBottomOf="@+id/idQrCode">
+        tools:context=".MainActivity" >
 
-        <RadioButton
-            android:id="@+id/idRadioMetro"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/metro"
-            app:layout_constraintTop_toBottomOf="@+id/idRadioTransport"
-            tools:layout_editor_absoluteX="54dp" />
+        <ImageView
+            android:id="@+id/idQrCode"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/imageDescription_qrcode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck"
+            tools:srcCompat="@tools:sample/avatars" />
 
-        <RadioButton
-            android:id="@+id/idRadioBusTram"
+        <RadioGroup
+            android:id="@+id/idRadioTransport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@+id/idQrCode"
+            app:layout_constraintTop_toBottomOf="@+id/idQrCode">
+
+            <RadioButton
+                android:id="@+id/idRadioMetro1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/metro1"
+                app:layout_constraintTop_toBottomOf="@+id/idRadioTransport"
+                tools:layout_editor_absoluteX="54dp" />
+
+            <RadioButton
+                android:id="@+id/idRadioMetro2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/metro2"
+                app:layout_constraintTop_toBottomOf="@+id/idRadioTransport"
+                tools:layout_editor_absoluteX="54dp" />
+
+            <RadioButton
+                android:id="@+id/idRadioBusTram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bus_tram"
+                app:layout_constraintTop_toBottomOf="@+id/idRadioTransport"
+                tools:layout_editor_absoluteX="54dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/idTransportInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/chosen_transport_radio"
+            app:layout_constraintEnd_toEndOf="@+id/idQrCode"
+            app:layout_constraintStart_toStartOf="@+id/idRadioTransport"
+            app:layout_constraintTop_toBottomOf="@+id/idRadioTransport" />
+
+        <Spinner
+            android:id="@+id/idStation"
+            android:layout_width="308dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:background="@drawable/layout_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idTransportInfo" />
+
+        <EditText
+            android:id="@+id/idEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/bus_tram"
-            app:layout_constraintTop_toBottomOf="@+id/idRadioMetro"
-            tools:layout_editor_absoluteX="54dp" />
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:ems="10"
+            android:hint="@string/enter_your_info"
+            android:inputType="number"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idStation" />
 
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/idTransportInfo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/chosen_transport_radio"
-        app:layout_constraintEnd_toEndOf="@+id/idQrCode"
-        app:layout_constraintStart_toStartOf="@+id/idRadioTransport"
-        android:maxLines="2"
-        android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@+id/idRadioTransport" />
-
-    <EditText
-        android:id="@+id/idEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/enter_your_info"
-        android:inputType="number"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idTransportInfo" />
-
-    <Button
-        android:id="@+id/idBtnGenerateQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/purple_700"
-        android:text="@string/generate_qr_code"
-        android:textColor="@drawable/button_text_color"
-        app:layout_constraintEnd_toEndOf="@+id/idEdit"
-        app:layout_constraintStart_toStartOf="@+id/idEdit"
-        app:layout_constraintTop_toBottomOf="@+id/idEdit" />
+        <Button
+            android:id="@+id/idBtnGenerateQR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@drawable/button_text_color"
+            android:text="@string/generate_qr_code"
+            app:layout_constraintEnd_toEndOf="@+id/idEdit"
+            app:layout_constraintStart_toStartOf="@+id/idEdit"
+            app:layout_constraintTop_toBottomOf="@+id/idEdit" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

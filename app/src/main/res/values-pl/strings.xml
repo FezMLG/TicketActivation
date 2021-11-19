@@ -8,5 +8,5 @@
     <string name="imageDescription_qrcode">kod QR</string>
     <string name="metro">Metro</string>
     <string name="radioBusTram_info">Numer boczny autobusu lub tramwaju (4 cyfry)</string>
-    <string name="radioMetro_info">Numer lini (1 lub 2) + numer stacji (01-21) np. 106 lub 213</string>
+    <string name="radioMetro_info">Wybierz stację metra z listy</string>
 </resources>

@@ -3,10 +3,88 @@
     <string name="qr_code" translatable="false">qr_code</string>
     <string name="enter_your_info">Podaj numer</string>
     <string name="generate_qr_code">Wygeneruj Kod Qr</string>
-    <string name="metro">Metro</string>
+    <string name="metro1" translatable="false">M1</string>
+    <string name="metro2" translatable="false">M2</string>
     <string name="bus_tram">Autobus/Tramwaj</string>
     <string name="chosen_transport_radio">Wybierz środek transportu</string>
     <string name="imageDescription_qrcode">QRCode</string>
-    <string name="radioMetro_info">Numer lini (1 lub 2) + numer stacji (01-21) np. 106 lub 213</string>
+    <string name="radioMetro_info">Wybierz stację metra z listy</string>
     <string name="radioBusTram_info">Numer boczny autobusu lub tramwaju (4 cyfry)"</string>
+    <string-array name="m1_stops">
+        <item>C01 Kabaty</item>
+        <item>C02 Natolin</item>
+        <item>C03 Imielin</item>
+        <item>C04 Stokłosy</item>
+        <item>C05 Ursynów</item>
+        <item>C06 Służew</item>
+        <item>C07 Wilanowska</item>
+        <item>C08 Wierzbno</item>
+        <item>C09 Racławicka</item>
+        <item>C10 Pole Mokotowskie</item>
+        <item>C11 Politechnika</item>
+        <item>C13 Centrum</item>
+        <item>C14 Świętokrzyska</item>
+        <item>C15 Ratusz Arsenał</item>
+        <item>C17 Dworzec Gdański</item>
+        <item>C18 Plac Wilsona</item>
+        <item>C19 Marymont</item>
+        <item>C20 Słodowiec</item>
+        <item>C21 Stare Bielany</item>
+        <item>C22 Wawrzyszew</item>
+        <item>C23 Młociny</item>
+    </string-array>
+    <string-array name="m1_stops_keys" translatable="false">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+    </string-array>
+    <string-array name="m2_stops">
+        <item>C06 Księcia Janusza</item>
+        <item>C07 Młynów</item>
+        <item>C08 Płocka</item>
+        <item>C09 Rondo Daszyńskiego</item>
+        <item>C10 Rondo ONZ</item>
+        <item>C11 Świętokrzyska</item>
+        <item>C12 Nowy Świat-Uniwersytet</item>
+        <item>C13 Centrum Nauki Kopernik</item>
+        <item>C14 Stadion Narodowy</item>
+        <item>C15 Dw. Wileński</item>
+        <item>C16 Szwedzka</item>
+        <item>C17 Targówek Mieszkaniowy</item>
+        <item>C18 Trocka</item>
+    </string-array>
+    <string-array name="m2_stops_keys" translatable="false">
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+    </string-array>
+    <string name="metro" translatable="false">Metro</string>
 </resources>

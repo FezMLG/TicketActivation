@@ -1,14 +1,11 @@
 package com.fezmlg.aktywacjabiletu
 
-import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.*
-import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
@@ -19,14 +16,16 @@ import com.google.zxing.qrcode.QRCodeWriter
 class MainActivity : AppCompatActivity() {
     // variables for imageview, edittext,
     // button, bitmap and qrencoder.
-    lateinit var qrCode: ImageView
-    lateinit var dataEdt: EditText
+    private lateinit var qrCode: ImageView
+    private lateinit var dataEdt: EditText
     private lateinit var generateQrBtn: Button
-    lateinit var radioMetro: RadioButton
-    lateinit var radioBusTram:RadioButton
+    lateinit var radioMetro1: RadioButton
+    private lateinit var radioMetro2: RadioButton
+    private lateinit var radioBusTram: RadioButton
     lateinit var transportInfo: TextView
     private lateinit var radioTransport: RadioGroup
-    var bitmap: Bitmap? = null
+    private var bitmap: Bitmap? = null
+    lateinit var station: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,34 +35,40 @@ class MainActivity : AppCompatActivity() {
         qrCode = findViewById(R.id.idQrCode)
         dataEdt = findViewById(R.id.idEdit)
         generateQrBtn = findViewById(R.id.idBtnGenerateQR)
-        radioMetro = findViewById(R.id.idRadioMetro)
+        radioMetro1 = findViewById(R.id.idRadioMetro1)
+        radioMetro2 = findViewById(R.id.idRadioMetro2)
         radioBusTram = findViewById(R.id.idRadioBusTram)
         radioTransport = findViewById(R.id.idRadioTransport)
         transportInfo = findViewById(R.id.idTransportInfo)
+        station = findViewById(R.id.idStation)
 
         // initializing onclick listener for radio group
         radioTransport.setOnCheckedChangeListener { _, _ ->
             // If the radiobutton that has changed in check state is now checked...
-            if (radioMetro.isChecked) {
-                transportInfo.text = getString(R.string.radioMetro_info)
-            } else if (radioBusTram.isChecked) {
-                transportInfo.text = getString(R.string.radioBusTram_info)
+            when {
+                radioMetro1.isChecked -> {
+                    transportInfo.text = getString(R.string.radioMetro_info)
+                    generateDataForSpinner(R.array.m1_stops)
+                    station.visibility = View.VISIBLE
+                    dataEdt.visibility = View.GONE
+                }
+                radioMetro2.isChecked -> {
+                    transportInfo.text = getString(R.string.radioMetro_info)
+                    generateDataForSpinner(R.array.m2_stops)
+                    station.visibility = View.VISIBLE
+                    dataEdt.visibility = View.GONE
+                }
+                radioBusTram.isChecked -> {
+                    transportInfo.text = getString(R.string.radioBusTram_info)
+                    station.visibility = View.GONE
+                    dataEdt.visibility = View.VISIBLE
+                }
             }
         }
 
         // initializing onclick listener for button.
         generateQrBtn.setOnClickListener {
-            if (TextUtils.isEmpty(dataEdt.text.toString())) {
-
-                // if the edittext inputs are empty then execute
-                // this method showing a toast message.
-                Toast.makeText(
-                    this@MainActivity,
-                    "Wpisz numer, aby wygenerować kod QR",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            } else if (radioBusTram.isChecked && dataEdt.text.length != 4) {
+            if (radioBusTram.isChecked && dataEdt.text.length != 4) {
 
                 // if none of radio's is clicked
                 Toast.makeText(
@@ -73,17 +78,24 @@ class MainActivity : AppCompatActivity() {
                 ).show()
 
             } else {
-
                 // generating string for qr code
                 var activateCode = "WTPWarszawa_"
-                if (radioMetro.isChecked) {
-                    activateCode += "M19"
-                } else if (radioBusTram.isChecked) {
-                    activateCode += "B"
+                when {
+                    radioMetro1.isChecked -> {
+                        val temp = getCodeByStation(station.selectedItem.toString(), "M1")
+                        activateCode += "M191$temp"
+                    }
+                    radioMetro2.isChecked -> {
+                        val temp = getCodeByStation(station.selectedItem.toString(), "M2")
+                        activateCode += "M192$temp"
+                    }
+                    radioBusTram.isChecked -> {
+                        activateCode += "B"
+                    }
                 }
                 activateCode += dataEdt.text.toString()
 
-                // checking if any of radio is choosed and making a qr code
+                // checking if any of radio's are chosen and making a qr code
                 if (radioTransport.checkedRadioButtonId == -1) {
                     Toast.makeText(
                         this@MainActivity,
@@ -93,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     try {
                         // getting our qrcode in the form of bitmap.
-                        bitmap = GetQrCodeBitmap(activateCode)
+                        bitmap = getQrCodeBitmap(activateCode)
                         // the bitmap is set inside our image
                         // view using .setimagebitmap method.
                         qrCode.setImageBitmap(bitmap)
@@ -108,8 +120,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun generateDataForSpinner(dataSource: Int){
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            dataSource,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            station.adapter = adapter
+        }
+    }
 
-    fun GetQrCodeBitmap(qrCodeContent: String): Bitmap {
+
+    private fun getQrCodeBitmap(qrCodeContent: String): Bitmap {
         val hints = hashMapOf<EncodeHintType, Int>().also { it[EncodeHintType.MARGIN] = 1 } // Make the QR code buffer border narrower
         val size = qrCode.width
         val bits = QRCodeWriter().encode(qrCodeContent, BarcodeFormat.QR_CODE, size, size, hints)
@@ -122,4 +148,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun getCodeByStation(name: String, line: String): String? {
+        var i = -1
+        var station = 0
+        var key = 0
+        if (line == "M1"){
+            station = R.array.m1_stops
+            key = R.array.m1_stops_keys
+        } else if (line == "M2") {
+            station = R.array.m2_stops
+            key = R.array.m2_stops_keys
+        }
+        for (cc in resources.getStringArray(station)) {
+            i++
+            if (cc == name) break
+        }
+        return resources.getStringArray(key)[i]
+    }
 }

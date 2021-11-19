@@ -3,10 +3,9 @@
     <string name="app_name">Ticket Activation</string>
     <string name="enter_your_info">Type number</string>
     <string name="generate_qr_code">Generate QR code</string>
-    <string name="metro">Metro</string>
     <string name="bus_tram">Bus/Tram</string>
     <string name="chosen_transport_radio">Choose transport</string>
     <string name="imageDescription_qrcode">QR code</string>
-    <string name="radioMetro_info">Line number (1 or 2) + station number (01-21) e.g. 106 or 213</string>
+    <string name="radioMetro_info">Choose station from list</string>
     <string name="radioBusTram_info">Side number of the bus or tram (4 digits)</string>
 </resources>
