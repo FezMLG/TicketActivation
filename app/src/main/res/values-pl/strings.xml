@@ -3,10 +3,11 @@
     <string name="app_name">Aktywacja Biletu</string>
     <string name="enter_your_info">Podaj numer</string>
     <string name="generate_qr_code">Wygeneruj Kod Qr</string>
-    <string name="bus_tram">Autobus/Tramwaj</string>
     <string name="chosen_transport_radio">Wybierz środek transportu</string>
     <string name="imageDescription_qrcode">kod QR</string>
-    <string name="metro">Metro</string>
-    <string name="radioBusTram_info">Numer boczny autobusu lub tramwaju (4 cyfry)</string>
     <string name="radioMetro_info">Wybierz stację metra z listy</string>
+    <string name="radioBus_info">Numer boczny autobusu (4 cyfry)</string>
+    <string name="radioTram_info">Numer boczny tramwaju (4 cyfry)</string>
+    <string name="tram">Tramwaj</string>
+    <string name="bus">Autobus</string>
 </resources>

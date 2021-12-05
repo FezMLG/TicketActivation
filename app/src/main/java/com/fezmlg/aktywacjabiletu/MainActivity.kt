@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var generateQrBtn: Button
     lateinit var radioMetro1: RadioButton
     private lateinit var radioMetro2: RadioButton
-    private lateinit var radioBusTram: RadioButton
+    private lateinit var radioBus: RadioButton
+    private lateinit var radioTram: RadioButton
     lateinit var transportInfo: TextView
     private lateinit var radioTransport: RadioGroup
     private var bitmap: Bitmap? = null
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         generateQrBtn = findViewById(R.id.idBtnGenerateQR)
         radioMetro1 = findViewById(R.id.idRadioMetro1)
         radioMetro2 = findViewById(R.id.idRadioMetro2)
-        radioBusTram = findViewById(R.id.idRadioBusTram)
+        radioBus = findViewById(R.id.idRadioBus)
+        radioTram = findViewById(R.id.idRadioTram)
         radioTransport = findViewById(R.id.idRadioTransport)
         transportInfo = findViewById(R.id.idTransportInfo)
         station = findViewById(R.id.idStation)
@@ -58,8 +60,13 @@ class MainActivity : AppCompatActivity() {
                     station.visibility = View.VISIBLE
                     dataEdt.visibility = View.GONE
                 }
-                radioBusTram.isChecked -> {
-                    transportInfo.text = getString(R.string.radioBusTram_info)
+                radioBus.isChecked -> {
+                    transportInfo.text = getString(R.string.radioBus_info)
+                    station.visibility = View.GONE
+                    dataEdt.visibility = View.VISIBLE
+                }
+                radioTram.isChecked -> {
+                    transportInfo.text = getString(R.string.radioTram_info)
                     station.visibility = View.GONE
                     dataEdt.visibility = View.VISIBLE
                 }
@@ -68,12 +75,21 @@ class MainActivity : AppCompatActivity() {
 
         // initializing onclick listener for button.
         generateQrBtn.setOnClickListener {
-            if (radioBusTram.isChecked && dataEdt.text.length != 4) {
+            if (radioBus.isChecked && dataEdt.text.length != 4) {
 
                 // if none of radio's is clicked
                 Toast.makeText(
                     this@MainActivity,
-                    "Nieprawidłowy numer boczny",
+                    "Nieprawidłowy numer boczny autobusu",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            } else if (radioTram.isChecked && dataEdt.text.length != 4) {
+
+                // if none of radio's is clicked
+                Toast.makeText(
+                    this@MainActivity,
+                    "Nieprawidłowy numer boczny tramwaju",
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -89,8 +105,11 @@ class MainActivity : AppCompatActivity() {
                         val temp = getCodeByStation(station.selectedItem.toString(), "M2")
                         activateCode += "M192$temp"
                     }
-                    radioBusTram.isChecked -> {
+                    radioBus.isChecked -> {
                         activateCode += "B"
+                    }
+                    radioTram.isChecked -> {
+                        activateCode += "T"
                     }
                 }
                 activateCode += dataEdt.text.toString()

@@ -5,11 +5,13 @@
     <string name="generate_qr_code">Wygeneruj Kod Qr</string>
     <string name="metro1" translatable="false">M1</string>
     <string name="metro2" translatable="false">M2</string>
-    <string name="bus_tram">Autobus/Tramwaj</string>
+    <string name="tram">Tramwaj</string>
+    <string name="bus">Autobus</string>
     <string name="chosen_transport_radio">Wybierz środek transportu</string>
     <string name="imageDescription_qrcode">QRCode</string>
     <string name="radioMetro_info">Wybierz stację metra z listy</string>
-    <string name="radioBusTram_info">Numer boczny autobusu lub tramwaju (4 cyfry)"</string>
+    <string name="radioBus_info">Numer boczny autobusu (4 cyfry)</string>
+    <string name="radioTram_info">Numer boczny tramwaju (4 cyfry)</string>
     <string-array name="m1_stops">
         <item>C01 Kabaty</item>
         <item>C02 Natolin</item>
