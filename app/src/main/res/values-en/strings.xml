@@ -10,4 +10,5 @@
     <string name="radioBus_info">Side number of the bus (4 digits)</string>
     <string name="tram">Tram</string>
     <string name="bus">Bus</string>
+    <string name="generetedQrCodeText">Zawartość kodu QR</string>
 </resources>

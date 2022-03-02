@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var radioTransport: RadioGroup
     private var bitmap: Bitmap? = null
     lateinit var station: Spinner
+    private lateinit var qrCodeText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         radioTransport = findViewById(R.id.idRadioTransport)
         transportInfo = findViewById(R.id.idTransportInfo)
         station = findViewById(R.id.idStation)
+        qrCodeText = findViewById(R.id.idQrCodeText)
 
         // initializing onclick listener for radio group
         radioTransport.setOnCheckedChangeListener { _, _ ->
@@ -128,6 +130,7 @@ class MainActivity : AppCompatActivity() {
                         // the bitmap is set inside our image
                         // view using .setimagebitmap method.
                         qrCode.setImageBitmap(bitmap)
+                        qrCodeText.text = activateCode
                     } catch (e: WriterException) {
                         // this method is called for
                         // exception handling.
